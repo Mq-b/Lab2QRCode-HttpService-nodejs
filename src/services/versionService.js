@@ -3,6 +3,7 @@ const configLoader = new (require('../configLoader'))();
 class VersionService {
   constructor() {
     // 从配置中获取版本信息，如果配置中没有则使用默认值
+    // TODO: 此处后续改为智能从github仓库的Release中拉取最新版本信息
     this.config = configLoader.getConfigValue('app') || {
       version: 'v1.0.0',
       update_url: 'https://github.com/Mq-b/Lab2QRCode/releases/latest',
