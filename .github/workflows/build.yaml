@@ -38,7 +38,7 @@ jobs:
           Start-Sleep -Seconds 2
 
           # 测试服务器
-          $response = Invoke-WebRequest -Uri "http://localhost:8080/" -UseBasicParsing
+          $response = Invoke-WebRequest -Uri "http://localhost:10000/" -UseBasicParsing
           Write-Host "服务器返回: $($response.Content)"
 
   deploy:
