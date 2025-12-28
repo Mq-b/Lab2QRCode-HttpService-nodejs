@@ -33,10 +33,19 @@ jobs:
         shell: pwsh
         run: |
           Start-Process -NoNewWindow npm "start"
-    
+
           # 等待服务器启动
           Start-Sleep -Seconds 2
-          
+
           # 测试服务器
           $response = Invoke-WebRequest -Uri "http://localhost:8080/" -UseBasicParsing
           Write-Host "服务器返回: $($response.Content)"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Deploy application
+        run: curl -k "https://106.14.192.58:10443/update?deploy_password=${{ secrets.DEPLOY_PASSWORD }}"
