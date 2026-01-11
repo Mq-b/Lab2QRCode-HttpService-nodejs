@@ -29,7 +29,8 @@ class VersionController {
       res.status(200).json({
         version: result.version,
         update_url: result.update_url,
-        update_log: result.update_log
+        update_log: result.update_log,
+        update_need: result.need_update
       });
     } catch (error) {
       console.error('Error in checkVersion controller:', error);
